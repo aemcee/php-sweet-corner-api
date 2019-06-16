@@ -31,7 +31,7 @@ if(empty($output['error'])){
                 // using print_r because variable is an associative array
                 //print_r($row);
                 // push onto array new value (associative array) of row
-                $output['users'][] = $rows;
+                $output['users'][] = $row;
                 echo '<pre>';
                 print_r($output['users']);
                 echo '</pre>';
