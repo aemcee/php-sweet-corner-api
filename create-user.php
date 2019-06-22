@@ -54,19 +54,24 @@ if(!empty($output['errors'])){
 
 // WHEN DOING AN INSERT YOU WILL NOT GET A RESULT BACK!!!
 $query = "INSERT INTO `users` (`name`,`email`,`password`,`created_at`,`updated_at`) 
-    VALUES ('$name','$email','$password', CURRENT_TIME, CURRENT_TIME)";
+    VALUES (?,?,?, CURRENT_TIME, CURRENT_TIME)";
 
 // print $query;
 // exit;
 
-$result = $conn->query($query);
+// taken out for prepare statement
+// $result = $conn->query($query);
 
-echo '<pre>';
-var_dump($result);
-var_dump($conn);
-echo '</pre>';
+$stmt = $conn->prepare($query);
+$stmt->bind_param('sss', $name, $email, $password);
 
-if($result){
+
+// echo '<pre>';
+// var_dump($result);
+// var_dump($conn);
+// echo '</pre>';
+
+if($stmt->execute()){
     // mysqli_affected_rows will tell you how much rows were affected. This case how many users changed/added
     if($conn->affected_rows){
         $insertedId = $conn->insert_id;
