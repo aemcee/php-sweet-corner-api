@@ -61,9 +61,10 @@ $query = "INSERT INTO `users` (`name`,`email`,`password`,`created_at`,`updated_a
 
 $result = $conn->query($query);
 
-// echo '<pre>';
-// var_dump($result);
-// echo '</pre>';
+echo '<pre>';
+var_dump($result);
+var_dump($conn);
+echo '</pre>';
 
 if($result){
     // mysqli_affected_rows will tell you how much rows were affected. This case how many users changed/added
