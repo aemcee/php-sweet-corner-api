@@ -30,9 +30,8 @@ if(isset($_GET['cart-id'])){
     throw new ApiException([], 406, 'No cart id'); 
 }
 
-$query = "SELECT u.id as user_id, c.user.id, p.name, p.cost, i.file_path, i.alt_test
-FROM `products` as `p`
-JOIN `images` as `i` on `p`.`image_id` = `i`.`id`
+$query = "SELECT u.id as userid, u.name as nameid
 FROM `users` as `u`
-JOIN `cart` as `c` on `u`.`id` = `c`.`user.id`";
+JOIN `cart` as `c` on c.user_id = u.id";
+
 
